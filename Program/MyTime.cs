@@ -38,31 +38,36 @@ namespace Program
         public void AddOneSecond()
         {
             int totalSeconds = TimeSinceMidnight() + 1;
-            SetTime(totalSeconds / 3600, (totalSeconds / 60) % 60, totalSeconds % 60);
+            
+            SetTime(totalSeconds / 3600, totalSeconds / 60 % 60, totalSeconds % 60);
         }
 
         public void AddOneMinute()
         {
             int totalSeconds = TimeSinceMidnight() + 60;
-            SetTime(totalSeconds / 3600, (totalSeconds / 60) % 60, totalSeconds % 60);
+            
+            SetTime(totalSeconds / 3600, totalSeconds / 60 % 60, totalSeconds % 60);
         }
 
         public void AddOneHour()
         {
             int totalSeconds = TimeSinceMidnight() + 3600;
-            SetTime(totalSeconds / 3600, (totalSeconds / 60) % 60, totalSeconds % 60);
+            
+            SetTime(totalSeconds / 3600, totalSeconds / 60 % 60, totalSeconds % 60);
         }
 
         public void AddSeconds(int s)
         {
             int totalSeconds = TimeSinceMidnight() + s;
-            totalSeconds = (totalSeconds % 86400 + 86400) % 86400; // Ensure the result is non-negative and within a day
-            SetTime(totalSeconds / 3600, (totalSeconds / 60) % 60, totalSeconds % 60);
+            totalSeconds = (totalSeconds % 86400 + 86400) % 86400;
+            
+            SetTime(totalSeconds / 3600, totalSeconds / 60 % 60, totalSeconds % 60);
         }
 
         public int Difference(MyTime otherTime)
         {
             int diff = Math.Abs(TimeSinceMidnight() - otherTime.TimeSinceMidnight());
+            
             if (diff > 43200) diff = 86400 - diff;
             return diff;
         }
